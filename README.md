@@ -1,25 +1,9 @@
 # Python_Notes
 
-Some notes on python. Notes include:
+Some notes on python with examples.
 
-- netcat (client and server)
-- tcp client
-- tcp server
-- udp client
-
-netcat
-======
-To run it first run the server by doing this
-
-- ./bhnet.py -l -p 9999 -c
-
-**Note:** -c is to run the command shell
-
-Then to run the client do
-
-- ./bhnet.py -t localhost -p 9999
-
-**Note:** Press CTRL-D to activate shell
-
-
-
+## unpacking elements from iterables of arbitrary length
+* unpack arrays, objects, tuples -> look at python_notes1.py
+* ex:>>> record = ('Dave', 'dave@example.com', '773-555-1212', '847-555-1212')
+* >>> print(name)
+* >> Dave
