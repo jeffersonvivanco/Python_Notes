@@ -13,4 +13,17 @@ def print_user_info(name, **info):
     print(name)
     print(info)
 
-    
+
+num = 0
+num_2 = 1
+num_3 = 2
+
+def change_nums(num, num_2, num_3):
+    num = 1
+    num_2 = 2
+    num_3 = 3
+    return (num, num_2, num_3)
+
+res = change_nums(num, num_2, num_3)
+
+print_shows_attended('Lion King', 'Les Miserables')

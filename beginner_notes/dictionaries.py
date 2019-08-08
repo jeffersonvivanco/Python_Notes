@@ -27,5 +27,6 @@ favorite_languages = {
     'sarah': ['c'],
     'edward': ['javascript']
 }
+del favorite_languages['jen']
 for name, languages in favorite_languages.items():
     print(str(name.title()) + " likes " + str(languages))

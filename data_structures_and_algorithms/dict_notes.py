@@ -1,5 +1,4 @@
 from collections import OrderedDict
-import json
 
 # ordered dictionary
 d = OrderedDict()
@@ -46,7 +45,7 @@ commonKeys = a.keys() & b.keys()
 keysInANotInB = a.keys() - b.keys()
 commonPairs = a.items() & b.items()
 
-# make a new dictionary with certain keys removed
+# make a new dictionary with certain keys removed with a dictionary comprehension
 c = {key: a[key] for key in a.keys() - {'z', 'w'}}
 
 

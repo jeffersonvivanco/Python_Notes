@@ -3,12 +3,6 @@ mylist = [1, 4, -5, 10, -7, 2, 3, -1]
 # list comprehension to filter the list
 pos = [n for n in mylist if n > 0]
 
-# One potential downside of using a list comprehension is that it might produce a large result if the original
-# input is large. If this is a concern, you can use generator expressions to produce the filtered values iteratively
-pos2 = (n for n in mylist if n > 0)
-for x in pos2:
-    print(x)
-
 # filtering process with exception handling
 values = ['1', '2', '3', '-', '4', 'N/A', '5']
 def is_int(val):

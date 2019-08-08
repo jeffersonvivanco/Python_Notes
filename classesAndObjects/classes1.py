@@ -17,10 +17,10 @@ class B(A):
     def __init__(self):
         super().__init__()
 
-
     def change_not_changed_by_inher_method(self):
         # try to change the var from A
         print('Cannot do it :)')
+
 
 # using the property methods
 class Person:
@@ -56,21 +56,31 @@ class Person:
 
 # extending a property in a subclass
 class Student(Person):
-
     def __init__(self, first_name, last_name):
         super().__init__(first_name, last_name)
 
-    @property
+    # to just extend getter property
+    @Person.first_name.getter
     def first_name(self):
-        return '{f} (student)'.format(f=super().first_name)
+        print('getting name')
+        return super().first_name
 
-    @first_name.setter
+    # to just extend the setter property
+    @Person.first_name.setter
     def first_name(self, value):
-        super(Student, Student).first_name.__se
+        print('Setting name to', value)
+        super(Student, Student).first_name.__set__(self, value)
+
+    def __repr__(self):
+        return 'Student({0.first_name!r}, {0.last_name!r})'.format(self)
+
+    def __str__(self):
+        # !r indicates that __repr__() should be used instead of __str__()
+        return '({0.first_name!r}, {0.last_name!r})'.format(self)
+
 
 student = Student('Jefferson', 'Vivanco')
-
+print(repr(student)) # Student('JEFFERSON', 'Vivanco')
+print(str(student)) # ('JEFFERSON', 'Vivanco')
+student.first_name = 'Amadeus'
 print(student.full_name)
-
-
-

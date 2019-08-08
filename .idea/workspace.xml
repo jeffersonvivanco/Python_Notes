@@ -1,70 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e6351084-5078-41e0-ba38-4f0e4ffad612" name="Default" comment="added proxy">
-      <change afterPath="$PROJECT_DIR$/beginner_notes/strings_and_numbers.py" afterDir="false" />
+    <list default="true" id="6d23010b-b337-467c-94ba-bdb895c68109" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/concurrency/PriorityQueue.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/concurrency/communicationz.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/Python_Notes.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Python_Notes.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bh_sshcmd.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bhnet.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/python_notes1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sum_strings.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tcp_client.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tcp_proxy.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tcp_server.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/udp_client.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/beginner_notes/dictionaries.py" beforeDir="false" afterPath="$PROJECT_DIR$/beginner_notes/dictionaries.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/beginner_notes/exceptions.py" beforeDir="false" afterPath="$PROJECT_DIR$/beginner_notes/exceptions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/beginner_notes/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/beginner_notes/functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/beginner_notes/lists.py" beforeDir="false" afterPath="$PROJECT_DIR$/beginner_notes/lists.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/beginner_notes/user_input_while.py" beforeDir="false" afterPath="$PROJECT_DIR$/beginner_notes/user_input_while.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classesAndObjects/classes1.py" beforeDir="false" afterPath="$PROJECT_DIR$/classesAndObjects/classes1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classesAndObjects/classes2.py" beforeDir="false" afterPath="$PROJECT_DIR$/classesAndObjects/classes2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/concurrency/multiprocessingz.py" beforeDir="false" afterPath="$PROJECT_DIR$/concurrency/multiprocessingz.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/concurrency/terminate_ex.py" beforeDir="false" afterPath="$PROJECT_DIR$/concurrency/terminate_ex.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/concurrency/threadz.py" beforeDir="false" afterPath="$PROJECT_DIR$/concurrency/threadz.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_encoding_and_processing/xml_parsing.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_encoding_and_processing/xml_parsing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms/dict_notes.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms/dict_notes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms/filtering_sequence.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms/filtering_sequence.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms/priority_queue.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms/priority_queue.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms/python_notes2.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms/python_notes2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/filesAndIo/escape_codes_examples.py" beforeDir="false" afterPath="$PROJECT_DIR$/filesAndIo/escape_codes_examples.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/filesAndIo/file_example1.py" beforeDir="false" afterPath="$PROJECT_DIR$/filesAndIo/file_example1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/filesAndIo/progress_indicator.py" beforeDir="false" afterPath="$PROJECT_DIR$/filesAndIo/progress_indicator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/filesAndIo/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/filesAndIo/test.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/functions/functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iteratorsGenerators/iterator1.py" beforeDir="false" afterPath="$PROJECT_DIR$/iteratorsGenerators/iterator1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/numbers_dates_time/date_timez.py" beforeDir="false" afterPath="$PROJECT_DIR$/numbers_dates_time/date_timez.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stringText/matchingSearch.py" beforeDir="false" afterPath="$PROJECT_DIR$/stringText/matchingSearch.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_application_util/loggin.py" beforeDir="false" afterPath="$PROJECT_DIR$/web_application_util/loggin.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/Python_Notes$file_reader.coverage" NAME="file_reader Coverage Results" MODIFIED="1530658033572" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/beginner_notes" />
-    <SUITE FILE_PATH="coverage/Python_Notes$exceptions.coverage" NAME="exceptions Coverage Results" MODIFIED="1530658028049" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/beginner_notes" />
-    <SUITE FILE_PATH="coverage/Python_Notes$time.coverage" NAME="time Coverage Results" MODIFIED="1530146523404" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/beginner_notes" />
-    <SUITE FILE_PATH="coverage/Python_Notes$file_example1.coverage" NAME="file_example1 Coverage Results" MODIFIED="1530656877690" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/filesAndIo" />
-  </component>
-  <component name="DatabaseView">
-    <option name="SHOW_INTERMEDIATE" value="true" />
-    <option name="GROUP_SCHEMA" value="true" />
-    <option name="GROUP_CONTENTS" value="false" />
-    <option name="SORT_POSITIONED" value="false" />
-    <option name="SHOW_TABLE_DETAILS" value="true" />
-    <option name="SHOW_EMPTY_GROUPS" value="false" />
-    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
-  </component>
-  <component name="FavoritesManager">
-    <favorites_list name="Python_Notes" />
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="FIRST">
-              <first_editor relative-caret-position="651">
-                <caret line="318" column="93" selection-start-line="318" selection-start-column="93" selection-end-line="318" selection-end-column="93" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="web_example1.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/network_and_web_programming/web_example1.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -76,64 +51,19 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/bhnet.py" />
-        <option value="$PROJECT_DIR$/tcp_proxy.py" />
-        <option value="$PROJECT_DIR$/beginner_notes/strings.py" />
-        <option value="$PROJECT_DIR$/beginner_notes/strings_and_numbers.py" />
-        <option value="$PROJECT_DIR$/beginner_notes/lists.py" />
-        <option value="$PROJECT_DIR$/beginner_notes/if_statements.py" />
-        <option value="$PROJECT_DIR$/beginner_notes/pi_digits.txt" />
-        <option value="$PROJECT_DIR$/beginner_notes/time.py" />
-        <option value="$PROJECT_DIR$/filesAndIo/test.txt" />
-        <option value="$PROJECT_DIR$/filesAndIo/file_example1.py" />
-        <option value="$PROJECT_DIR$/beginner_notes/file_reader.py" />
-        <option value="$PROJECT_DIR$/beginner_notes/exceptions.py" />
-        <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/network_and_web_programming/web_example1.py" />
-      </list>
-    </option>
-  </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
-  </component>
-  <component name="NodePackageJsonFileManager">
-    <packageJsonPaths />
-  </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="19" />
-    <option name="y" value="23" />
-    <option name="width" value="1400" />
-    <option name="height" value="761" />
-  </component>
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Python_Notes" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Python_Notes" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
-  </component>
+  <component name="ProjectId" id="1OwlXENeN9R0V9FTpk21xeWMBk0" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -147,8 +77,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.exceptions">
-    <configuration name="exceptions" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager">
+    <configuration name="communicationz" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Python_Notes" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -156,108 +86,23 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/beginner_notes" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/concurrency" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/beginner_notes/exceptions.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/concurrency/communicationz.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
     </configuration>
-    <configuration name="file_example1" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Python_Notes" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/filesAndIo" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/filesAndIo/file_example1.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration name="file_reader" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Python_Notes" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/beginner_notes" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/beginner_notes/file_reader.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration name="time" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Python_Notes" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/beginner_notes" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/beginner_notes/time.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <gulpfile />
-      <tasks />
-      <arguments />
-      <envs />
-    </configuration>
-    <configuration default="true" type="tests" factoryName="Unittests">
-      <module name="Python_Notes" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;.&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-    </configuration>
-    <list>
-      <item itemvalue="Python.file_reader" />
-      <item itemvalue="Python.time" />
-      <item itemvalue="Python.file_example1" />
-      <item itemvalue="Python.exceptions" />
-    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.file_reader" />
-        <item itemvalue="Python.exceptions" />
-        <item itemvalue="Python.file_example1" />
-        <item itemvalue="Python.time" />
+        <item itemvalue="Python.communicationz" />
       </list>
     </recent_temporary>
   </component>
@@ -266,363 +111,35 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="e6351084-5078-41e0-ba38-4f0e4ffad612" name="Default" comment="" />
-      <created>1498242930512</created>
+      <changelist id="6d23010b-b337-467c-94ba-bdb895c68109" name="Default Changelist" comment="" />
+      <created>1564896577611</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1498242930512</updated>
+      <updated>1564896577611</updated>
+      <workItem from="1564896579142" duration="68000" />
+      <workItem from="1565090824256" duration="1744000" />
+      <workItem from="1565138052098" duration="2397000" />
+      <workItem from="1565217626964" duration="6267000" />
     </task>
-    <task id="LOCAL-00001" summary="Fixed netcat">
-      <created>1498250502587</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1498250502588</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Updated readme">
-      <created>1498251179342</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1498251179342</updated>
-    </task>
-    <option name="localTasksCounter" value="3" />
     <servers />
-  </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="19" y="23" width="1400" height="761" extended-state="0" />
-    <editor active="true" />
-    <layout>
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5007153" side_tool="true" weight="0.2581818" />
-      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Python Console" order="7" weight="0.32848486" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49928468" weight="0.31030303" />
-      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49928468" weight="0.2581818" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14801179" />
-      <window_info anchor="right" id="R Packages" order="3" />
-      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
-      <window_info anchor="right" id="R Graphics" order="3" />
-      <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="right" id="SciView" order="3" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="right" id="Data View" order="3" />
-    </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed netcat" />
-    <MESSAGE value="Updated readme" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated readme" />
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="4710">
-            <caret line="314" column="36" selection-start-line="314" selection-start-column="36" selection-end-line="314" selection-end-column="36" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/filesAndIo/file_example1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="26" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/filesAndIo/test.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="55" selection-start-line="1" selection-start-column="55" selection-end-line="1" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="4170">
-            <caret line="278" column="43" selection-start-line="278" selection-start-column="43" selection-end-line="278" selection-end-column="43" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/beginner_notes/strings_and_numbers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/beginner_notes/lists.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="750">
-          <caret line="50" column="67" selection-start-line="50" selection-start-column="67" selection-end-line="50" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/beginner_notes/if_statements.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="54" selection-start-line="4" selection-start-column="54" selection-end-line="4" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/beginner_notes/classes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="23" lean-forward="true" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/beginner_notes/pi_digits.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="1" lean-forward="true" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/beginner_notes/hello.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/beginner_notes/file_reader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="49" selection-start-line="3" selection-start-column="49" selection-end-line="3" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/beginner_notes/strings_and_numbers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/beginner_notes/lists.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="750">
-          <caret line="50" column="67" selection-start-line="50" selection-start-column="67" selection-end-line="50" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/beginner_notes/if_statements.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="54" selection-start-line="4" selection-start-column="54" selection-end-line="4" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/beginner_notes/hello.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/beginner_notes/classes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="23" lean-forward="true" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/beginner_notes/strings_and_numbers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="20" lean-forward="true" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/beginner_notes/lists.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="750">
-          <caret line="50" column="67" selection-start-line="50" selection-start-column="67" selection-end-line="50" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/beginner_notes/if_statements.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="54" selection-start-line="4" selection-start-column="54" selection-end-line="4" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/beginner_notes/hello.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/beginner_notes/classes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="35" lean-forward="true" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bhnet.py" />
-    <entry file="file://$PROJECT_DIR$/sum_strings.py" />
-    <entry file="file://$PROJECT_DIR$/tcp_proxy.py" />
-    <entry file="file://$PROJECT_DIR$/bhnet.py" />
-    <entry file="file://$PROJECT_DIR$/sum_strings.py" />
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="345">
-            <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bhnet.py" />
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/udp_client.py" />
-    <entry file="file://$PROJECT_DIR$/sum_strings.py" />
-    <entry file="file://$PROJECT_DIR$/bhnet.py" />
-    <entry file="file://$PROJECT_DIR$/tcp_proxy.py" />
-    <entry file="file://$PROJECT_DIR$/beginner_notes/lists.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="750">
-          <caret line="50" column="67" selection-start-line="50" selection-start-column="67" selection-end-line="50" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/beginner_notes/hello.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/beginner_notes/if_statements.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="54" selection-start-line="4" selection-start-column="54" selection-end-line="4" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/beginner_notes/classes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="23" lean-forward="true" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/iteratorsGenerators/iterator1.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/beginner_notes/time.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/filesAndIo/test.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="55" selection-start-line="1" selection-start-column="55" selection-end-line="1" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dsAlgo/comparing_users.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="25" lean-forward="true" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/beginner_notes/pi_digits.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="1" lean-forward="true" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/filesAndIo/file_example1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/beginner_notes/loops.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/beginner_notes/strings_and_numbers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/beginner_notes/user_input_while.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="3" lean-forward="true" selection-start-column="3" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/beginner_notes/file_reader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="25" lean-forward="true" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/beginner_notes/exceptions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="14" lean-forward="true" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="651">
-            <caret line="318" column="93" selection-start-line="318" selection-start-column="93" selection-end-line="318" selection-end-column="93" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state>
-          <caret column="14" lean-forward="true" selection-start-column="14" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/network_and_web_programming/web_example1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Python_Notes$communicationz.coverage" NAME="communicationz Coverage Results" MODIFIED="1565218677913" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/concurrency" />
   </component>
 </project>

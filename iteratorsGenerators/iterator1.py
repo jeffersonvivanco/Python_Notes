@@ -20,3 +20,12 @@ try:
         print(name)
 except StopIteration:
     pass
+
+ferrets = [['Buzz', 'Boots', 'Billie']]
+
+ferret_names = [n for f in ferrets for n in f]
+
+ferret_names2 = list(n for n in (f for f in ferrets))
+
+print(ferret_names)
+print(ferret_names2)

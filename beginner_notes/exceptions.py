@@ -14,3 +14,16 @@ except ValueError:
     print("You didn't type a number")
 else:
     print(res)
+
+
+# custom exception
+class CustomError(Exception):
+    def __init__(self, *args: object, **kwargs: object) -> None:
+        super().__init__(*args, **kwargs)
+
+try:
+    print('Going to raise an custom exception')
+    raise CustomError('This is a custom error')
+except CustomError as e:
+    print(e.args)
+    print('Printed out custom error :)')

@@ -54,4 +54,12 @@ print(str(numbersSquared[0:3]))
 # tuple: an immutable list, you can't write over an element in a list, but you can write over a list
 dimesions = (200, 50)
 
+# using the map function
+family2 = map(lambda x: 'I love ' + x, family)
+for f in family2:
+    print(f)
+
+# using the reduce function // todo Come back to this!!
+# even_numbers_doubled = reduce()
+
 

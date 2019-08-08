@@ -1,7 +1,4 @@
 # implements a simple priority queue using heapq based on highest priority
-# TODO: look up what is self and _, and tuples
-
-
 import heapq
 
 class PriorityQueue:
@@ -12,6 +9,7 @@ class PriorityQueue:
         heapq.heappush(self._queue, (-priority, self._index, item))
         self._index = 1
     def pop(self):
+        # -1 gets the last item in the tuple
         return heapq.heappop(self._queue)[-1]
 
 class Item:
@@ -27,5 +25,9 @@ def run():
     q.push(Item('spam'), 4)
     q.push(Item('grok'), 1)
     print(q.pop())
+    print(q.pop())
+    print(q.pop())
+    print(q.pop())
+
 
 run()

@@ -27,11 +27,12 @@ print(m.groups())
 # the backslash digits refer to the capture group numbers
 text = 'Today is 11/27/2012. PyCon starts 3/13/2013'
 textR = re.sub(r'(\d+)/(\d+)/(\d+)', r'\3-\1-\2', text)
-
+print(textR)
 
 # performing case-insensitive matching
 caseIText = 'UPPER PYTHON, lower python, Mixed Python';
 allPython = re.findall('python', caseIText, flags=re.IGNORECASE)
+
 
 
 # finding the shortest match

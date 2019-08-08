@@ -14,10 +14,10 @@ with open('test.txt', 'wt') as f:
     f.write('Hello Jeff, this is computer')
 
 
-# redirect print statement to a file
-with open('test.txt', 'wt') as f:
-    print('test print statement', file=f)
-
-# append to the end of a file
-with open('test.txt', 'at') as f:
-    print('test print statement 2 should appear with the first one', file=f)
+# # redirect print statement to a file
+# with open('test.txt', 'wt') as f:
+#     print('test print statement', file=f)
+#
+# # append to the end of a file
+# with open('test.txt', 'at') as f:
+#     print('test print statement 2 should appear with the first one', file=f)
