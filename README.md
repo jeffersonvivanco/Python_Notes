@@ -909,6 +909,107 @@ to numeric objects (integers, floats, rationals, etc.), and the `io` library def
 dynamic language that gives you great flexibility. Trying to enforce type constraints everywhere tends to result in code that
 is more complicated than it needs to be. You should embrace Python's flexibility.
 
+## Modules and Packages
+
+### Making a Hierarchical Package of Modules
+* You want to organize your code into a package consisting of a hierarchical collection of modules.
+* Making a package structure is simple. Just organize your code as you wish on the file system and make sure that every
+directory defines an `__init__.py` file. Once you have done this, you should be able to perform various import statements,
+such as the following:
+```python
+import graphics.primitive.line
+from graphics.primitive import line
+import graphics.formats.jpg as jpg
+```
+* Defining a hierarchy of modules is as easy as making a directory structure on the file system. The purpose of the `__init__.py`
+files is to include optional initialization code that runs at different levels of a package are encountered. More often than
+not, it's fine to leave the `__init__.py` files empty. However, there are certain situations where they might include code. For
+example, an `__init__.py` file can be used to automatically load submodules like this:
+```python
+# graphics/formats/__init__.py
+from . import jpg
+from . import png
+```
+For such a file, a user merely has to use a single `import graphics.formats.png`.
+* Other common uses of `__init__.py` include consolidating definitions from multiple files into a single logical namespace, as is
+sometimes done when splitting modules.
+* Astute programmers will notice that Python 3.3 still seems to perform package imports even if no `__init__.py` files are present.
+If you don't define `__init__.py`, you actually create what is known as a "namespace package". All things being equal, include
+`__init__.py`.
+
+### Reading Datafiles Within a Package
+Your package includes a datafile that your code needs to read. **You need to do this in the most portable way possible.**
+* Suppose the file *spam.py* wants to read the contents of the file *somedata.dat*. To do it, use the following code:
+```python
+import pkgutil
+data = pkgutil.get_data(__package__, 'somedata.dat')
+```
+The resulting variable `data` will be a byte string containing the raw contents of the file.
+* To read a datafile, you might be inclined to write code that uses built-in I/O functions, such as `open()`. However, there
+are several problems with this approach. 
+  * First, a package has very little control over the current working directory of the interpreter. Thus, any I/O operations would
+  have to be programmed to use absolute file-names. Since each module includes a `__file__` variable with the full path, it's
+  not impossible to figure out the location, but it's messy.
+  * Second, packages are often installed as *zip* or *.egg* files, which don't preserve the files in the same way as a normal
+  directory on the file system. Thus, if you tried to use `open()` on a datafile contained in an archive, it wouldn't work
+  at all.
+* The first argument to `get_data()` is a string containing the package name. You can either supply it directly or use a
+special variable, such as `__package__`. The second argument is the relative name of the file within the package. If necessary,
+you can navigate into different directories using standard Unix filename conventions as long as the final directory is still
+located within the package.
+
+### Creating a New Python Environment
+* You want to create a new Python environment in which you can install modules and packages. However, you want to do this without
+installing a new copy of Python or making changes that might affect the system Python installation.
+* You can make a new "virtual" environment using the `venv` command. This command is installed in the same directory as the
+Python interpreter or possibly in the *Scripts* directory on Windows. Here is an example:
+```bash
+bash % python3 -m venv Spam
+bash %
+```
+The name supplied to `venv` is the name of a directory that will be created. Upon creation, the *Spam* directory will look
+something like this:
+```bash
+bash % cd Spam
+bash % ls
+bin include lib pyvenv.cfg
+```
+* To activate the virtual environment so it uses your newly created interpreter and packages do `source Span/bin/activate`
+* To deactivate do `deactivate`
+* In the *bin* directory, you'll find a Python interpreter that you can use.
+* A key feature of this interpreter is that its *site-packages* directory has been set to the newly created environment. Should
+you decide to install third-party packages, they will be installed here, not in the normal system *site-packages* directory.
+* The creation of a virtual environment mostly pertains to the installation and management of third-party packages. With a
+new virtual environment, the next step is often to install a package manager, such as `distribute` or `pip`. When installing
+such tools and subsequent packages, you just need to make sure you use the interpreter that's part of the virtual environment. This
+should install the packages into the newly created *site-packages* directory.
+* By default, virtual environments are completely clean and contain no third-party add-ons. If you would like to include
+already installed packages as part of a virtual environment, create the environment using the `--system-site-packages` option.
+
+### Using PIP (the package installer for python)
+You can use pip to install packages from the Python Package Index and other indexes.
+* `pip install SomePackage` - install a package from PyPI
+* `pip install SomePackage-1.0-py2.py3-none-any.wh1` - install a package that's already been downloaded from PYPI or obtained
+from elsewhere. This is useful if the target machine does not have a network connection.
+* `pip show --files SomePackage` - show what files were installed, show details about an installed package
+* `pip list --outdated` - show what packages are outdated
+* `pip install --upgrade SomePackage` - upgrade a package
+* `pip uninstall SomePackage` - uninstall a package
+* `pip install -U pip` - to upgrade pip
+
+* Requirement Files - are files containing a list of items to be installed using pip install like so
+`pip install -r requirements.txt`. In practice, there are 4 common uses of Requirements files
+  1. Requirement files are used to hold the result from `pip freeze` for the purpose of achieving repeatable installations.
+  ```bash
+  pip freeze > requirements.txt
+  pip install -r requirements.txt
+  ```
+  2. Requirement files are used to force pip to properly resolve dependencies.
+  3. Requirement files are used to force pip to install an alternate version of a sub-dependency.
+  4. Requirement files are used to override a dependency with a local patch that lives in version control.
+
+
+
 ## Network and Web Programming
 ### Interacting with http services as a client
 * to send a simple http get request to a remote service you can use the urllib.request module 

@@ -1,9 +1,11 @@
+import os
 # read the entire file as a single string
 # with open('test.txt', 'rt') as f:
 #     data = f.read()
 
 # iterate over the lines of the file
 lines = [] # array used to store the lines
+os.path.basename('filesAndIo/')
 with open('test.txt', 'rt') as f:
     for line in f:
         lines.append(line)
