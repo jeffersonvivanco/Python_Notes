@@ -1,7 +1,7 @@
 mylist = [1, 4, -5, 10, -7, 2, 3, -1]
 
 # list comprehension to filter the list
-pos = [n for n in mylist if n > 0]
+pos = (n for n in mylist if n > 0)
 
 # filtering process with exception handling
 values = ['1', '2', '3', '-', '4', 'N/A', '5']

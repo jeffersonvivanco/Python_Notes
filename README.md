@@ -43,18 +43,20 @@ def sum(items):
 
 ### keeping the last N items
 * You want to keep a limited history of the last few items seen during iteration or during some other kind of processing.
-* keeping a limited history is a perfect use for a collections.deque -> look ay python_notes2.py
+* keeping a limited history is a perfect use for a `collections.deque` -> look ay python_notes2.py
 * When writing code to search for items, it is common to use a generator function involving `yield`. This decouples the
 process of searching from the code that uses the results.
+* Using `deque(maxlen=N)` creates a fixed-sized queue. When new items are added and the queue is full, the oldest item is
+automatically removed.
 * although you could manually perform such operations on a list, the queue solution is far more elegant and runs a lot faster.
-* More generally, a `deque` can be used whenever you need a simple queue structure.
+* More generally, a `deque` can be used whenever you need a simple queue structure. If you don't give it a max size, you
+get an unbounded queue that lets you append and pop items on either end.
 * adding or popping items from either end of a queue has O(1) complexity. This is unlike
 a list where inserting or removing items from the front of the list is O(N).
 
 ### finding the largest or smallest N items
 * You want to make a list of the largest or smallest N items in a collection.
-* to make a list of the largest or smallest N items in a collection, use `heapq` ===> look at python_notes3.py
-* the heapq module has 2 functions `nlargest()` and `nsmallest()` that do exactly what you want
+* the `heapq` module has 2 functions `nlargest()` and `nsmallest()` that do exactly what you want. ===> look at python_notes3.py
 * If you are looking for the N smallest or largest items and N is small compared to the overall size of the collection, these 
 functions (nlargest, nsmallest) provide superior performance. Underneath the cover, they work by first converting the data
 into a list where items are ordered as a heap.
@@ -96,19 +98,50 @@ role in making the comparison operations work for items that have the same prior
 * You want to make a dictionary that maps keys to more than one value (a so-called "multidict").
 * a dictionary is a mapping where each key is mapped to a single value. If you want to map keys to multiple values,
 you need to store the multiple values in another container such as a list or set. -> look at multidict.py
-* list: to store order
-* set: to eliminate duplicates
+```python
+d = {
+  'a': [1, 2, 3],
+  'b': [4, 5]
+}
+e = {
+  'a': {1, 2, 3},
+  'b': {4, 5}
+}
+```
+* Use a list if you want to preserve the insertion order of the items.
+* Use a set if you want to eliminate duplicates (and don't care about the order).
 * to easily construct such dictionaries, you can use `defaultdict` in the `collections` module. A feature of `defaultdict`
-is that it automatically the first value so you can simply focus on adding items. One caution with `defaultdict` is that
-it will automatically create dictionary entries for keys accessed later on(even if they aren't currently found in the dictionary).
+is that it automatically initializes the first value so you can simply focus on adding items. One caution with `defaultdict` is that
+it will automatically create dictionary entries for keys accessed later on (even if they aren't currently found in the dictionary).
+If you don't want this behavior, you might use `setdefault()` on an ordinary dictionary instead. For example
+```python
+d = {} # a regular dictionary
+d.setdefault('a', []).append(1)
+d.setdefault('a', []).append(2)
+d.setdefault('c', []).append(1)
+```
+* However, many programmers find `setdefault()` to be a little unnatural--not to mention the fact that it always creates
+a new instance of the initial value on each invocation (the empty list `[]` in the example above).
 
 ### keeping dictionaries in order
 * You want to create a dictionary, and you also want to control the order of items when iterating or serializing.
 * to control the order of items in a dictionary, you can use an `OrderedDict` from the collections module. It exactly
   preserves the original insertion order of data when iterating.  ==> look at dict_notes.py
+```python
+from collections import OrderedDict
+d = OrderedDict()
+d['foo'] = 1
+d['bar'] = 2
+d['spam'] = 3
+d['grok'] = 4
+```
 * An `OrderedDict` can be particularly useful when you want to build a mapping that you may want to later serialize or encode
 into a different format. For example, if you want to precisely control the order of fields appearing in a JSON encoding, first
 building the data in an `OrderedDict` will do the trick.
+```python
+import json
+json.dump(d)
+```
 * An `OrderedDict` internally maintains a doubly linked list that orders the keys according to insertion order. When a
   new item is first inserted, it is placed at the end of this list. Subsequent reassignment of an existing key doesn't change
   the order.
@@ -120,21 +153,61 @@ building the data in an `OrderedDict` will do the trick.
 ### calculating with dictionaries
 * You want to perform various calculations (e.g., minimum value, maximum value, sorting, etc.) on a dictionary of data.
 * in order to perform useful calculations on the dictionary contents, it is often useful to invert the keys and values
-of the dictionary using `zip()` ==> look at dict_notes.py
+of the dictionary using `zip()` For example ==> look at dict_notes.py 
+```python
+prices = {
+    'ACME': 45.23,
+    'AAPL': 612.78,
+    'IBM': 205.55,
+    'HPQ': 37.20,
+    'FB': 10.75
+}
+# In order to perform useful calculations on the dictionary contents, it is often useful to invert the keys and values of
+# the dictionary using zip(). For example, find the min and max price and stock name
+min_price = min(zip(prices.values(), prices.keys()))
+max_price = max(zip(prices.values(), prices.keys()))
+# Similarly to rank the data, use zip() with sorted()
+prices_sorted = sorted(zip(prices.values(), prices.keys()))
+ 
+```
 * **be aware that zip() creates an iterator that can only be consumed once.**
 * If you try to perform data reductions on a dictionary, you'll find that they only process the keys, not the values.
-You can fix this by using the values method of a dictionary, but then you don't get the keys, using zip solves this problem
-by "inverting" the dictionary into a sequence of `(value, key)` pairs. When performing comparisons on such tuples, the `value`
-element is compared first, followed by the `key`. This gives you exactly the behavior that you want and allows reductions
-and sorting to be easily performed on the dictionary contents using a single statement.
-  * It should be noted that in calculations involving `(value, key)` pairs, the key will be used to determine the result in
-  instances where multiple entries happen to have the same value. For instance, in calculations such as `min()` and `max()`,
-  the entry with the smallest or largest key will be returned if there happen to be duplicate values. 
+You can fix this by using the `values()` method of a dictionary, but then you don't get the keys.
+* You can get the key corresponding to the min or max value if you supply a key function to `min()` and `max()`. However,
+to get the minimum value, you'll need to perform an extra lookup step.
+```python
+prices = {}
+min(prices, key=lambda k: prices[k])
+max(prices, key=lambda k: prices[k])
+min_value = prices[min(prices, key=lambda k: prices[k])]
+```
+* Using zip solves this problem by "inverting" the dictionary into a sequence of `(value, key)` pairs. When performing 
+comparisons on such tuples, the `value` element is compared first, followed by the `key`. This gives you exactly the behavior 
+that you want and allows reductions and sorting to be easily performed on the dictionary contents using a single statement.
+* It should be noted that in calculations involving `(value, key)` pairs, the key will be used to determine the result in
+instances where multiple entries happen to have the same value. For instance, in calculations such as `min()` and `max()`,
+the entry with the smallest or largest key will be returned if there happen to be duplicate values. 
 
 ### finding commonalities in two dictionaries
 * You have two dictionaries and want to find out what they might have in common (same keys, values, etc.).
-* **to find out what two dictionaries have in common, simply perform common set operations using the keys() or items() methods**
-  ===> look in dict_notes.py
+* to find out what two dictionaries have in common, simply perform common set operations using the `keys()` or `items()` methods**
+For example, ===> look in dict_notes.py
+```python
+a = {'x':1, 'y': 2, 'z': 3}
+b = {'w': 10, 'x': 11, 'y': 2}
+# Find keys in common
+common_keys = a.keys() & b.keys() # {'x', 'y'}
+# Find keys in a that are not in b
+a_not_in_b = a.keys() - b.keys() # {'z'}
+# Find (key, value) pairs in common
+common_items = a.items() & b.items() # {('y', 2)}
+```
+* These kinds of operations can also be used to alter or filter dictionary contents. For example, suppose you want to make a
+new dictionary with selected key words removed. For example using dictionary comprehension
+```python
+# Make a new dictionary with certain keys removed
+c = {key:a[key] for key in a.keys() - {'z', 'w'}}
+```
 * a dictionary is a mapping between a set of keys and values. The `keys()` method of a dictionary returns a keys-view object
 that exposes the keys. A little-known feature of keys views is that they also support common set operations such as unions,
 intersections and differences.
@@ -142,97 +215,314 @@ intersections and differences.
 similar set operations and can be used to perform operations such as finding out which key-value pairs two dictionaries have
 in common.
 * although similar, the `values()` method of a dictionary does not support the set operations described in this recipe. In part,
-this is due to the fact that unlike keys, the items contained in the values view aren't guaranteed to be unique.
+this is due to the fact that unlike keys, the items contained in the values view aren't guaranteed to be unique. However, if you
+must perform such calculations, they can be accomplished by simply converting the values to a set first.
 
-### removing duplicates while preserving order
-* ===> look at removing_duplicates.py
-* if order does not matter to you, you can convert the list into a set
+### removing duplicates from a sequence while maintaining order
+* You want to eliminate the duplicate values in a sequence, but preserve the order of the remaining items
+* If the values in a sequence are hashable, the problem can be easily solved using a set and a generator. For example:
+```python
+def dedupe(items):
+  seen = set()
+  for item in items:
+    if item not in seen:
+      yield item
+      seen.add(item)
+
+a = [1, 5, 2, 1, 9, 1, 5, 10]
+a_d = list(dedupe(a))
+```
+* This only works if the items in the sequence are hashable. If you are trying to eliminate duplicates in a sequence of unhashable
+types (such as dicts), you can make a slight change to the recipe
+```python
+def dedupe(items, key=None):
+  seen = set()
+  for item in items:
+    val = item if key is None else key(item)
+    if val not in seen:
+      yield item
+      seen.add(val)
+# Here the purpose of the key argument is to specify a function that converts a sequence of items into a hashable type for the
+# purposes of duplicate detection
+a = [{'x':1,'y':2}, {'x':1,'y':3}, {'x':1,'y':2}, {'x':2,'y':4},]
+a_d = list(dedupe(a, key=lambda d: (d['x', d['y']])))
+a_d2 = list(dedupe(a, key=lambda d: d['x']))
+```
+* If all you want to do is eliminate duplicates, it is often easy enough to make a set. For example
+```python
+a = [1, 2, 1, 3, 1, 2, 1, 4]
+a_d = set(a)
+```
+* However, this approach doesn't preserve any kind of ordering. So, the resulting data will be scrambled afterward. The solution
+above avoids this.
+* The use of a generator function in this recipe reflects the fact that you might want the function to be extremely general
+purpose--not necessarily tied directly to list processing. For example, if you want to read a file, eliminating duplicate lines,
+you could simply do this:
+```python
+with open(somefile, 'r') as f:
+  for line in dedupe(f):
+    # ...
+```
+* The specification of a `key` function mimics similar functionality in built-in functions such as `sorted()`, `min()`, and `max()`.
 
 ### naming a slice
-* If you have a lot of hardcoded slices in your code, you can name a slice by using the slice function and assigning it to a
-  variable. ===> look at python_notes4.py
+* Your program has become an unreadable mess of hardcoded slice indices and you want to clean it up.
+* Suppose you have some code that is pulling specific data fields out of a record string with fixed fields (e.g., from a flat file or similar format):
+```python
+# 01234567891011121314151617181920
+record = '..........100       ....513.25    .......'
+SHARES = slice(20, 32)
+PRICE = slice(40, 48)
+cost = int(record[SHARES]) * float(record[PRICE])
+```
+* This way you avoid having a lot of mysterious hardcoded indices, and what you're doing becomes much clearer
+* If you have a `slice` instance `s`, you can get more information about it by looking at its `s.start`, `s.stop`, and `s.step`
+attributes respectively.
+* In addition, you can map a slice onto a sequence of a specific size by using its `indices(size)` method. This returns a
+tuple `(start, stop, step)` where all values have been suitably limited to fit within bounds (as to avoid `IndexError` exceptions
+when indexing). For example
+```python
+s = 'Hello World'
+a = slice(10, 50, 2)
+a_2 = a.indices(len(s))
+for i in range(*a_2):
+  print(i)
+```
 
 ### determining the most frequently occurring items in a sequence
-* The `collections.Counter` class is designed for just such a problem. It even comes with a `handy most_common()` method that will
-  give you the answer. ===> look at mostFrequentOccur.py
-* As input, Counter objects can be fed any sequence of hashable input items.
-* to update the list of words and do a count you can use the update function
-* You can combine counter objects using + and -
- 
- 
- 
+* You have a sequence of items, and you'd like to determine the most frequently occurring items in the sequence.
+* The `collections.Counter` class is designed for just such a problem. It even comes with a handy `most_common()` method that will
+  give you the answer.
+* To illustrate, let's say you have a list of words and you want to find out which words occur most often.
+```python
+words = [
+     'look', 'into', 'my', 'eyes', 'look', 'into', 'my', 'eyes',
+       'the', 'eyes', 'the', 'eyes', 'the', 'eyes', 'not', 'around', 'the',
+       'eyes', "don't", 'look', 'around', 'the', 'eyes', 'look', 'into',
+       'my', 'eyes', "you're", 'under'
+]
+from collections import Counter
+word_counts = Counter(words)
+top_three = word_counts.most_common(3)
+```
+* As input, `Counter` objects can be fed any sequence of hashable input items. Under the covers, a `Counter` is a dictionary
+that maps the items to the number of occurrences. For example: `print(word_counts['not']) # 1`. If you want to increment the
+count manually, simply use addition: `word_counts[word] += 1`. Or alternatively you could use the `update()` method:
+`word_counts.update(morewords)`
+* A little known feature of `Counter` instances is that they can easily combined using various mathematical operations. For example:
+```python
+a = Counter(words)
+b = Counter(morewords)
+# Combine counts
+c = a + b
+# Subtract counts
+d = a - b
+```
+* Needless to say, `Counter` objects are a tremendously useful tool for almost any kind of problem where you need to tabulate
+and count data. You should prefer this over manually written solutions involving dictionaries.
+
 ### sorting a list of dictionaries by a common key
-* sorting this type of structure is easy using the operator module's itemgetter function. ===> look at sortingListOfDicts.py
-* the itemgetter function can also accept multiple keys
-* the operator.itemgetter() function takes as arguments the lookup indices used to extract the desired values from the records
-  in rows (look at sample code). It can be a dictionary key name, a numeric list element, or any value that can be fed to an
-  object's __get_item__() method. If you give multiple indices to itemgetter(), the callable it produces will return a tuple
-  with all of the elements in it, and sorted() will order the output according to the sorted order of the tuples.
-* The functionality of itemgetter() is sometimes replaced by lambda expressions, ex: 
-  rows_by_fname = sorted(rows, key=lambda r: r['fname'])
-* The solution above works fine, but the solution with itemgetter tends to run a bit faster
-* this technique can applied also to min and max
+* You have a list of dictionaries and you would like to sort the entries according to one or more of the dictionary values.
+* sorting this type of structure is easy using the `operator` module's `itemgetter()` function. ===> look at sortingListOfDicts.py
+* the `itemgetter()` function can also accept multiple keys
+* If you give multiple indices to `itemgetter()`, the callable it produces will return a tuple with all the elements in it, and
+`sorted()` will order the output according to the sorted order of the tuples.
+* The functionality of `itemgetter()` is sometimes replaced by `lambda` expressions. For example
+```python
+rows = [
+    {'fname': 'Brian', 'lname': 'Jones', 'uid': 1003},
+    {'fname': 'David', 'lname': 'Beazley', 'uid': 1002},
+    {'fname': 'John', 'lname': 'Cleese', 'uid': 1001},
+    {'fname': 'Big', 'lname': 'Jones', 'uid': 1004}
+]
+rows_by_fname = sorted(rows, key=lambda r: r['fname'])
+rows_by_lfname = sorted(rows, key=lambda r: (r['lname'], r['fname']))
+```
+* this technique can applied also to `min()` and `max()`
 
 ### sorting objects without native comparison support
-* When you want to sort objects of the same class and they don't natively support comparison operations you can use the built
-  in sorted function.
+* You want to sort objects of the same class, but they don't natively support comparison operations.
 * The built in `sorted()` function takes a key argument that can be passed a callable that will return some value in the object
-  that sorted will use to compare the objects. ===> look at comparing_users.py
-* you can use operator.attrgetter to get the key
-* same technique for min and max
+  that `sorted` will use to compare the objects. For example, if you have a sequence of User instances in your application, and
+  you want to sort them by their `user_id` attribute, you would supply a callable that takes a User instance as input and
+  returns the `user_id`. ex:
+```python
+class User:
+  def __init__(self, user_id):
+    self.user_id = user_id
+  def __repr__(self):
+    return 'User({})'.format(self.user_id)
+users = [User(23), User(3), User(9)]
+sorted(users, key=lambda u: u.user_id)
+```
+* instead of using `lambda`, an alternative approach is to use `operator.attrgetter()`
+* the choice of whether or not to use `lambda` or `attrgetter()` may be one of personal preference. However, `attrgetter()`
+is often a tad bit faster and also has the added feature of allowing multiple fields to be extracted simultaneously. This
+is analogous to the use of `operator.itemgetter()` for dictionaries. For example, if `User` instances also had a `first_name`
+and `last_name` attribute, you could perform a sort like this: `by_name = sorted(users, key=attrgetter('last_name', 'first_name'))`
+* It is also worth noting that the technique used in this recipe can be applied to functions such as `min()` and `max()`
 * note: `sorted()` returns a new list, unlike `list_name.sort()` sorts items in place
 
 ### Grouping records together based on a field
-* the itertools.groupby() function is particularly useful for grouping data
-* [INFO]: sort() will sort the original list unlike sorted that returns a new list, fyi
-* The groupby() function works by scanning a sequence and finding sequential 'runs' of identical values. On each iteration it
-   returns the value along with an iterator that produces all of the items in a group with the same value
-* An important preliminary step is sorting the data according to the field of interest. Since groupby() only examines
-  consecutive items, failing to sort first won't group the records as you want
+* You have a sequence of dictionaries or instances and you want to iterate over the data in groups based on the value of
+a particular field, such as date.
+* the `itertools.groupby()`function is particularly useful for grouping data together like this. To illustrate, suppose you
+have the following list of dictionaries:
+```python
+rows = [
+{'address': '5412 N CLARK', 'date': '07/01/2012'},
+{'address': '5148 N CLARK', 'date': '07/04/2012'},
+{'address': '5800 E 58TH', 'date': '07/02/2012'},
+{'address': '2122 N CLARK', 'date': '07/03/2012'},
+{'address': '5645 N RAVENSWOOD', 'date': '07/02/2012'},
+{'address': '1060 W ADDISON', 'date': '07/02/2012'},
+{'address': '4801 N BROADWAY', 'date': '07/01/2012'},
+{'address': '1039 W GRANVILLE', 'date': '07/04/2012'}
+]
+
+# Now suppose you want to iterate over the data in chunks grouped by date. To do it, first sort by the desired field (in this case date)
+# and then use itertools.groupby()
+from operator import itemgetter
+from itertools import groupby
+
+# sort by the desired field first
+rows.sort(key=itemgetter('date'))
+
+# iterate in groups
+for date, items in groupby(rows, key=itemgetter('date')):
+  print(date)
+  for i in items:
+    print(' ', i)
+```
+* The `groupby()` function works by scanning a sequence and finding sequential "runs" of identical values (or values returned
+by the given key function). On each iteration it returns the value along with an iterator that produces all of the items in a 
+group with the same value.
+* An important preliminary step is sorting the data according to the field of interest. Since `groupby()` only examines
+consecutive items, failing to sort first won't group the records as you want.
+* If your goal is to simply group the data together by dates into a large data structure that allows random access, you may
+have better luck using `defaultdict()` to build a multidict, as described in earlier. It's not necessary to sort the records
+first. Thus, if memory is no concern, it may be faster to do this than to first sort the records and iterate using `groupby()`
 
 ### filtering sequence elements
 * You have data inside of a sequence, and need to extract values or reduce the sequence using some criteria.
 * the easiest way to filter sequence data is often to use a list comprehension, ===> look at filtering_sequence.py
+```python
+my_list = [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5]
+my_list2 = [n for n in my_list if n > 0]
+
+```
 * one potential downside of using a list comprehension is that it might produce a large result if the original input is large.
 If this is concern, you can use generator expressions to produce the filtered values iteratively. ex: `pos = (n for n in mylist if n > 0)`
 * sometimes, the filtering criteria cannot be easily expressed in a list comprehension or generator expression. For
   example, suppose that the filtering process involves exception handling or some other complicated detail. For this
   put the filtering code into its own function and use the built-in `filter()` function 
+```python
+values = ['1', '2', '3', '-', '4', 'N/A', 'S']
+def is_int(val):
+  try:
+    x = int(val)
+    return True
+  except ValueError:
+    return False
+ivals = list(filter(is_int, values))
+print(ivals)
+```
 * `filter()` creates an iterator, so if you want to create a list of results, make sure you also use `list()`
-* List comprehensions and generator expressions also have the power to transform the data at the same time
-  ex: [math.sqrt(n) for n in mylist if n > 0]
+* List comprehensions and generator expressions are often the easiest and most straightforward ways to filter simple data. They
+also have the added power to transform the data at the same time. ex: `[math.sqrt(n) for n in my_list if n > 0]`
 * One variation on filtering involves replacing the values that don't meet the criteria with a new value instead of discarding
-  them. ex: clip_neg = [n if n > 0 else 0 for n in mylist]
-* Another notable filtering tool is itertools.compress(), which takes an iterable and an accompanying Boolean selector sequence
-  as input. As output, it gives you all of the items in the iterable where the corresponding element in the selector is True.
-  This can be useful if you're trying to apply the results of filtering one sequence to another related sequence.
-* like filter, compress normally returns an iterator. Thus, you need to use list() to turn the results into a list if desired.
+  them. For example, perhaps instead of just finding positive values, you want to also clip bad values to fit within a specified
+  range. This is often easily accomplished by moving the filter criterion into a conditional expression like this:
+`clip_pos = [n if n < 0 else 0 for n in my_list]`
+* Another notable filtering tool is `itertools.compress()`, which takes an iterable and an accompanying Boolean selector sequence
+  as input. As output, it gives you all of the items in the iterable where the corresponding element in the selector is `True`.
+  This can be useful if you're trying to apply the results of filtering one sequence to another related sequence. For example,
+  suppose you have the following two columns of data.
+```python
+addresses = [
+'5412 N CLARK',
+'5148 N CLARK',
+'5800 E 58TH',
+'2122 N CLARK',
+'5645 N RAVENSWOOD',
+'1060 W ADDISON',
+'4801 N BROADWAY',
+'1039 W GRANVILLE'
+]
+counts = [0, 3, 10, 4, 1, 7, 6, 1]
+
+# list of all addresses where the corresponding count value was greater than 5
+from itertools import compress
+more5 = [n > 5 for n in counts] # [False, False, True, False, False, True, True, False]
+x = list(compress(addresses, more5)) # ['5800 E 58TH', '1060 W ADDISON', '4801 N BROADWAY']
+```
+* the key here is to first create a sequence of Booleans that indicates which elements satisfy the desired condition. The
+`compress()` function then picks out the items corresponding to `True` values.
+* like `filter()`, `compress()` normally returns an iterator. Thus, you need to use `list()` to turn the results into a list if desired.
 
 ### extracting a subset of a dictionary
+* You want to make a dictionary that is a subset of another dictionary.
 * this is easily accomplished using dictionary comprehension ===> look at filtering_sequence.py
+```python
+prices = {
+    'ACME': 45.23,
+    'AAPL': 612.78,
+    'IBM': 205.55,
+    'HPQ': 37.20,
+    'FB': 10.75
+}
+# make a dictionary of all prices over 200
+p1 = {key:value for key, value in prices.items() if value > 200}
+
+# make a dictionary of tech stocks
+tech_names = {'AAPL', 'IBM', 'HPQ', 'MSFT'}
+p2 = {key:value for key, value in prices.items() if key in tech_names}
+```
 
 ### mapping names to sequence elements
-* Problem: You have code that accesses list or tuple elements by position, but this makes the code somewhat difficut to read
+* Problem: You have code that accesses list or tuple elements by position, but this makes the code somewhat difficult to read
   at times. You'd also like to be less dependent on position in the structure, by accessing the elements by name.
-* Solution: collections.namedtuple() provides these benefits while adding minimal overhead over using a normal tuple object.
-  collections.namedtuple() is actually a factory method that returns a subclass of the standard python tuple type. You feed it a type name, and the fields it should have, and it returns a class that you can instantiate, passing in values for the 
-  fields you have defined. ====> look at namedTuple.py
-* Although an instance of a namedtuple looks like a normal class instance, it is a interchangeable with a tuple and supports
+* `collections.namedtuple()` provides these benefits while adding minimal overhead over using a normal tuple object.
+  `collections.namedtuple()` is actually a factory method that returns a subclass of the standard python tuple type. You feed it a type name, 
+  and the fields it should have, and it returns a class that you can instantiate, passing in values for the 
+  fields you have defined, and so on.
+* Although an instance of a namedtuple looks like a normal class instance, it is interchangeable with a tuple and supports
   all of the usual tuple operations such as indexing and unpacking.
+```python
+from collections import namedtuple
+Subscriber = namedtuple('Subscriber', ['addr', 'joined'])
+sub = Subscriber('email@email.com', '2012-10-19')
+print(len(sub)) # 2
+addr, joined = sub
+print(addr, joined) # email@email.com 2012-10-19
+```
 * A major use case for named tuples is decoupling your code from the position of the elements it manipulates. So, if you get
   back a large list of tuples from a database call, then manipulate them by accessing the positional elements, your code could
-  break if, say, you added a new column to your table. Not so if you first cast the returned tuples to namedtuples.
+  break if, say, you added a new column to your table. Not so if you first cast the returned tuples to namedtuples. References
+  to positional elements often make the code a bit less expressive and more dependent on the structure of the records. Naturally,
+  you can avoid the explicit conversion of the Stock namedtuple if the records sequence in the example already contained such
+  instances. For ex:
+```python
+from collections import namedtuple
+Stock = namedtuple('Stock', ['name', 'shares', 'price'])
+def compute_cost(records):
+  total = 0.0
+  for rec in records:
+    s = Stock(*rec)
+    total += s.shares * s.price
+  return total
+```
 * One possible use of a namedtuple is as a replacement for a dictionary, which requires more space to store. Thus, if you are 
   building large data structures involving dictionaries, use of a namedtuple will be more efficient. However, be aware that
   unlike a dictionary, a namedtuple is immutable.
-* If you need to change any of the attributes, it can be done using the _replace() method of a namedtuple instance, which
+* If you need to change any of the attributes, it can be done using the `_replace()` method of a namedtuple instance, which
   makes an entirely new namedtuple with specified values replaced. 
-* A subtle use of the _replace() method is that it can be a convinient way to populate named tuples that have optional or
-  missing fields. To do this, you make a prototype tuple containing the default values and then use _replace() to create
+* A subtle use of the `_replace()` method is that it can be a convenient way to populate named tuples that have optional or
+  missing fields. To do this, you make a prototype tuple containing the default values and then use `_replace()` to create
   new instances with values replaced.
 * Last, but not least, it should be noted that if your goal is to define an efficient data structure where you will be
   changing various instance attributes, using namedtuple is not your best choice, instead consider defining a class using
-  _slots_ 
+  `_slots_` 
 
 ### Transforming and Reducing Data at the same time
 * You need to execute a reduction function (e.g., `sum()`, `min()`, `max()`), but first need to transform or filter the data.
@@ -269,7 +559,13 @@ min_shares = min(s['shares'] for s in portfolio)
   to only be used once and discarded. The generator solution transforms the data iteratively and is therefore much more
   memory efficient.
 * Certain reduction functions such as min and max accept a key argument that might be useful in situations where you might
-  be inclined to use a generator.
+  be inclined to use a generator. For example
+```python
+# Original: Returns 28
+min_shares = min(s['shares'] for s in portfolio)
+# Alternative: Returns {'name': 'AOL', 'shares': 20}
+min_shares = min(portfolio, key=lambda s: s['shares'])
+```
 
 ### Combining multiple mappings into a single mapping
 * You have multiple dictionaries or mappings that you want to logically combine into a single mapping to perform certain operations,
@@ -525,16 +821,131 @@ for part in combine(sample(), 32768):
   
   
   
+  
+### Performing Text operations on Byte strings
+You want to perform common text operations (e.g., stripping, searching, and replacement) on byte strings
+* Byte strings already support most the same built-in operations as text strings. For example:
+```python
+data = b'Hello World'
+s = data[0:5] # b'Hello'
+s2 = data.startswith(b'Hello') # True
+s3 = data.split() # [b'Hello', b'World']
+s4 = data.replace(b'Hello', b'Hello cruel') # b'Hello cruel World'
+```
+* Such operations also work with byte arrays. For example:
+```python
+data = bytearray(b'Hello World')
+d = data[0:5] # bytearray(b'Hello')
+d2 = data.startswith(b'Hello') # True
+d3 = data.split() # [bytearray(b'Hello'), bytearray(b'World')]
+d4 = data.replace(b'Hello', b'Hello cruel') # bytearray(b'Hello cruel World')
+```
+* You can apply regular expression pattern matching to byte strings, but the patterns themselves need to be specified as
+bytes. For example
+```python
+import re
+data = b'FOO:BAR,SPAM'
+ds = re.split(b'[:,]', data) # [b'FOO', b'BAR', b'SPAM']
+```
+* Almost all of the operations available on text strings will work on byte strings. However, there are a few notable differences
+to be aware of.
+  * First, indexing of byte strings produces integers, not individual characters
+  * Second, byte strings don't provide a nice string representation and don't print cleanly unless first decoded into a text string.
+  ```python
+  s = b'Hello World'
+  print(s) # b'Hello World'
+  print(s.decode('ascii')) # Hello World
+  ```
+    * Similarly, there are no string formatting operations available to byte strings.
+  * Finally, you need to be aware that using a byte string can change the semantics of certain operations--especially those
+  related to the filesystem. For example, if you supply a filename encoded as bytes instead of a text string, it usually
+  disables filename encoding/decoding.
+ 
+* Some programmers might be inclined to use byte strings as an alternative to text strings due to a possible performance improvement.
+Although it's true that manipulating bytes tends to be slightly more efficient than text (due to the inherent overhead related to
+Unicode), doing so usually leads to very messy and non idiomatic code. You'll often find that byte strings don't play well
+with a lot of other parts of Python, and that you end up having to perform all sorts of manual encoding/decoding operations
+yourself to get things to work right. Frankly, if you're working with text, use normal text strings in your program, not byte strings.
 
 ## Numbers, Dates and Times
 ### Rounding numerical values
-* For simple rounding, use the built-in round(value, ndigits) function
+* You want to round a floating-point number to a fixed number of decimal places.
+* For simple rounding, use the built-in `round(value, ndigits)` function
 * When a value is exactly halfway between two choices, the behaviour of round is to round to the nearest even digit. That is, values such as
   1.5 or 2.5 both get rounded to 2.
 * The number of digits given to round() can be negative, in which case rounding takes place for tens, hundreds, thousands, and so on.
 * Don't confuse rounding with formatting a value for output. You can just specify the desired precision when formatting.
-    * example: `'value is {:0.3f}'.format(x)`
-    
+```python
+x = 1.23456
+print(format(x, '0.2f'))
+print('value is {:0.3f}'.format(x))
+```
+* Also, resist the urge to round floating-point numbers to "fix" perceived accuracy problems. For example, you might be
+inclined to do this.
+```python
+a = 2.1
+b = 4.2
+c = a + b # 6.30000001
+c = round(c, 2) # "fix" result?
+print(c) # 6.3
+```
+* For most applications involving floating point, it's simply not necessary (or recommended) to do this. Although there
+are small errors introduced into calculations, the behaviors of these errors are understood and tolerated. If avoiding
+such errors is important (e.g, in financial applications, perhaps), consider the use of the `decimal` module.
+
+### Performing accurate decimal calculations
+You need to perform accurate calculations with decimal numbers, and don't want the small errors that naturally occur with
+floats.
+* A well-known issue with floating-point numbers is that they can't accurately represent all base-10 decimals. Moreover,
+even simple mathematical calculations introduce small errors. For example:
+```python
+a = 4.2
+b = 2.1
+c = a + b # 6.300000000000001
+```
+* These errors are a "feature" of the underlying CPU and the IEEE 754 arithmetic performed by its floating-point unit.
+Since Python's float data type stores data using the native representation, there's nothing you can do to avoid such errors
+if you write your code using `float` instances.
+* If you want more accuracy (and are willing to give up some performance), you can use the `decimal` module:
+```python
+from decimal import Decimal
+a = Decimal('4.2')
+b = Decimal('2.1')
+c = a + b # Decimal('6.3')
+print(c) # 6.3
+```
+* A major feature of `decimal` is that it allows you to control different aspects of calculations, including number of
+digits and rounding. To do this, you create a local context and change its settings. ex:
+```python
+from decimal import localcontext, Decimal
+a = Decimal('1.3')
+b = Decimal('1.7')
+print(a/b) # 0.7647058823529411764705882353
+with localcontext() as ctx:
+  ctx.prec = 3
+  print(a/b) # 0.765
+``` 
+* The `decimal` module implements IBM's "General Decimal Arithmetic Specification." 
+* Newcomers to Python might be inclined to use the `decimal` module to work around perceived accuracy problems with the
+`float` data type. However, it's really important to understand your application domain. If you're working with science
+or engineering problems, computer graphics, or most things of a scientific nature, it's simply more common to use the
+normal floating-point type. For one, very few things in the real world are measured to the 17 digits of accuracy that
+floats provide. Thus, tiny errors introduced in calculations just don't matter. Second, performance of native floats is
+significantly faster--something that's important if you're performing a large number of calculations.
+* That said, you can't ignore the errors completely. Mathematicians have spent a lot of time studying various algorithms,
+and some handle errors better than others. You also have to a little careful with effects due to things such as subtractive
+cancellation and adding large and small numbers together. ex:
+```python
+nums = [1.23e+18, 1, -1.23e+18]
+s = sum(nums) # notice how 1 disappears
+print(s) # 0
+```
+* This latter example can be addressed by using a more accurate implementation in `math.fsum()`.
+* However, for other algorithms, you really need to study the algorithm and understand its error propagation properties.
+* All of this said, the main use of the `decimal` module is in programs involving things such as finance. In such programs,
+it's extremely annoying to have small errors creep into calculation. It is also common to encounter `Decimal` objects when
+Python interfaces with databases--again, especially when accessing financial data. 
+
 ### Picking things at random
 * the random module has various functions for random numbers and picking random items.
 * For example, to pick a random out of a sequence, use random.choice()
@@ -1007,8 +1418,6 @@ from elsewhere. This is useful if the target machine does not have a network con
   2. Requirement files are used to force pip to properly resolve dependencies.
   3. Requirement files are used to force pip to install an alternate version of a sub-dependency.
   4. Requirement files are used to override a dependency with a local patch that lives in version control.
-
-
 
 ## Network and Web Programming
 ### Interacting with http services as a client

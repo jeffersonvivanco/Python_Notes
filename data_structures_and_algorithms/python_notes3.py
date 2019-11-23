@@ -1,7 +1,5 @@
 import heapq
 
-# TODO look up lambda in python
-
 nums = [1, -3, 20, 23, 4, 100, 22, -1, 0, 34, 45, -45, 89, 22]
 print("smallest numbers: ",heapq.nsmallest(3, nums))
 
