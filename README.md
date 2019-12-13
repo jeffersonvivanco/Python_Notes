@@ -1510,11 +1510,175 @@ However, be aware that all of these are unreliable in a multithreaded environmen
 not to rely on such functions.
 
 ## Utility Scripting and System Administration
+A lot of people use Python as a replacement for shell scripts, using it to automate common
+system tasks, such as manipulating files, configuring systems, and so forth. The main goal
+for this chapter is to describe features related to common tasks encountered when writing
+scripts. 
 
 ### Terminating a program with an error message
 * You want your program to terminate by printing a message to standard error and returning a nonzero status code.
 * To have a program terminate in this manner, raise a `SystemExit` exception, but supply the error message as an argument.
-For ex: `raise SystemExit(It Failed)`
+For ex: `raise SystemExit('It Failed')`
+* This will cause the supplied message to be printed to `sys,stderr` and the program to exit with
+a status code of 1.
+
+### Prompting for a Password at Runtime
+You've written a script that requires a password, but since the script is meant for 
+interactive use, you'd like to prompt the user for a password rather than hardcode it
+into the script.
+* Python's `getpass` module is precisely what you need in this situation. It will allow
+you to very easily prompt for a password withot having the keyed-in password displayed
+on the user's terminal. Here's how it's done
+```python
+import getpass
+
+def svc_login(user, passwd):
+  pass
+
+user = getpass.getuser()
+passwd = getpass.getpass()
+if svc_login(user, passwd):
+  print('Yay')
+else:
+  print('Boo')
+```
+* In this code, the `svc_login()` function is code that you must write to further process
+the password entry.
+* Note in the preceding code that `getpass.getuser()` doesn't prompt the user for their
+username. Instead, it uses the current user's login name, according to the user's shell
+environment, or as last resort, according to the local system's password database (on
+platforms that support the `pwd` module).
+* It's also important to remember that some systems may not support the hiding of the
+typed password input to the `getpass()` method. In this case, Python does all it can to
+forewarn you of problems before moving on.
+
+### Making a stopwatch timer
+You want to be able to record the time it takes to perform various tasks.
+
+* The `time` module contains various functions for performing time-related functions. However, it's
+often useful to put a higher-level interface on them that mimics a stop watch. For ex:
+```python
+import time
+
+class Timer:
+  def __init__(self, func=time.perf_counter):
+    self.elapsed = 0.0
+    self._func = func
+    self._start = None
+  def start(self):
+    if self._start is not None:
+      raise RuntimeError('Already started')
+    self._start = self._func()
+  def stop(self):
+    if self._start is None:
+      raise RuntimeError('Not started')
+    end = self._func()
+    self.elapsed += end - self._start
+    self._start = None
+  def reset(self):
+    self.elapsed = 0.0
+
+  @property
+  def running(self):
+    return self._start is not None
+  def __enter__(self):
+    self.start()
+    return self
+  def __exit__(self, exc_type, exc_val, exc_tb):
+    self.stop()
+```
+* This class defines a timer that can be started, stopped, and reset as needed by the user. It keeps
+track of the total elapsed time in the `elapsed` attribute. Here is an example that shows
+how it can be used:
+```python
+# Implementation above
+class Timer:
+  pass
+def countdown(n):
+  while n > 0:
+    n -= 1
+
+# Use 1: Explicit start/stop
+t = Timer()
+t.start()
+countdown(1000000)
+t.stop()
+print(t.elapsed)
+
+# Use 2: As a context manager
+with t:
+  countdown(1000000)
+print(t.elapsed)
+
+with Timer() as t2:
+  countdown(1000000)
+print(t2.elapsed)
+```
+* This recipe provides a simple yet very useful class for making timing measurements and tracking 
+elapsed time. It's also a nice illustration of how to support the context management protocol and
+the `with` statement.
+* One issue in making timing measurements concerns the underlying time function used to do it. As
+a general rule, the accuracy of timing measurements made with functions such as `time.time()` or
+`time.clock()` varies according to the operating system. In contrast, the `time.perf_counter()`
+function always uses the highest-resolution timer available on the system.
+* As shown , the time recorded by the `Timer` class is made according to wall-clock time, and
+includes all time spent sleeping. If you only want the amount of CPU time used by the process, use
+`time.process_time()` instead. For example:
+```python
+import time
+def countdown():
+  pass
+class Timer:
+  pass
+t = Timer(time.process_time)
+with t:
+  countdown(1000000)
+print(t.elapsed)
+```
+* Both the `time.perf_counter()` and the `time.process_time()` return a "time" in fractional
+seconds. However, the actual value of the time doesn't have any particular meaning. To make
+sense of the results, you have to call the functions twice and compute a time difference.
+
+### Putting limits on memory and cpu usage
+You want to place some limits on the memory or CPU use of a program running on Unix system.
+
+* The `resource` module can be used to perform both tasks. For example, to restrict CPU time,
+do the following:
+```python
+import signal, resource, os
+def time_exceeded(signo, frame):
+  print("Time's up")
+  raise SystemExit(1)
+
+def set_max_runtime(seconds):
+  # install the signal handler and set a resource limit
+  soft, hard = resource.getrlimit(resource.RLIMIT_CPU)
+  resource.setrlimit(resource.RLIMIT_CPU, (seconds, hard))
+  signal.signal(signal.SIGXCPU, time_exceeded)
+
+
+```
+
+### Launching a web browser
+You want to launch a browser from a script and have it point to some URL that you specify.
+
+* The `webbrowser` module can be used to launch a browser in a platform-independent manner. For ex:
+```python
+import webbrowser
+webbrowser.open('http://www.python.org')
+```
+* This opens the requested page using the default browser. If you want a bit more control over how the page
+gets opened, you can use one of the following functions:
+  * `webbrowser.open_new('http://www.python.org')`
+  * `webbrowser.open_new_tab('http://www.python.org')`
+
+* If you want to open a page in a specific browser, you can use the `webbrowser.get()` function to
+specify a particular browser. For ex:
+```python
+import webbrowser
+c = webbrowser.get('firefox')
+c.open('http://www.google.com')
+```
 
 ## Testing, Debugging and Exceptions
 ### Unit Tests and Test Cases
